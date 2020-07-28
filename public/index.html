@@ -10,9 +10,22 @@
 <body>
     <div id="app">
         <h1>Currency Converter</h1>
-        <div>
+        
+        <div id="converter">
+            <h3>Enter an amount:</h3>
+            <!-- <select id="base-select">
+                <option v-for="(rate, name) in exchangeRates.rates">{{name}}</option>
+            </select> -->
+            <select id="currency-select" v-model="selectedCurrency">
+                <option v-for="(rate, name, index) in exchangeRates.rates" :value="rate">{{name}}</option>
+            </select>
+            <input type="number" v-model.number="toConvert">
+            <h3>= {{ convertedCurrency }}</h3>
+        </div>
+
+        <div id="exchange-rate-list">
             <h3>Exchange Rates</h3>
-            <p v-for="(i, name) in exchangeRates.rates">{{name}}:{{ i }}</p>
+            <p v-for="(rate, name) in exchangeRates.rates">{{name}}:{{ rate }}</p>
         </div>
     </div>
 </body>

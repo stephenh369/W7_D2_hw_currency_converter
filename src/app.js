@@ -6,11 +6,20 @@ document.addEventListener('DOMContentLoaded', () => {
         el: '#app',
         
         data: {
-            exchangeRates: ''
+            exchangeRates: '',
+            toConvert: 0,
+            selectedCurrency: null,
+            convertedCurrency: 0
         },
 
         mounted: function() {
             this.fetchExchangeRates();
+        },
+
+        computed: {
+            convertCurrency: function() {
+                return this.convertedCurrency = this.toConvert * this.selectedCurrency;
+            }
         },
 
         methods: {
