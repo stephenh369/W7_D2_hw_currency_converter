@@ -17,7 +17,7 @@
                 <option v-for="(rate, name) in exchangeRates.rates">{{name}}</option>
             </select> -->
             <select id="currency-select" v-model="selectedCurrency">
-                <option v-for="(rate, name, index) in exchangeRates.rates" :value="rate">{{name}}</option>
+                <option v-for="(rate, name) in exchangeRates.rates" :value="rate">{{name}}</option>
             </select>
             <input type="number" v-model.number="toConvert">
             <h3>= {{ convertedCurrency }}</h3>
