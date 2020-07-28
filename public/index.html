@@ -13,9 +13,9 @@
         
         <div id="converter">
             <h3>Enter an amount:</h3>
-            <!-- <select id="base-select">
-                <option v-for="(rate, name) in exchangeRates.rates">{{name}}</option>
-            </select> -->
+            <select id="base-select" v-model="selectedBaseCurrency">
+                <option v-for="(rate, name) in exchangeRates.rates" :value="rate">{{name}}</option>
+            </select>
             <select id="currency-select" v-model="selectedCurrency">
                 <option v-for="(rate, name) in exchangeRates.rates" :value="rate">{{name}}</option>
             </select>

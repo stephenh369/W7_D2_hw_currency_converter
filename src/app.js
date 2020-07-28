@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             exchangeRates: '',
             toConvert: 0,
+            selectedBaseCurrency: null,
             selectedCurrency: null,
             convertedCurrency: 0
         },
@@ -18,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         computed: {
             convertCurrency: function() {
-                return this.convertedCurrency = this.toConvert * this.selectedCurrency;
+                this.exchangeRates.base = this.selectedBaseCurrency
+                const amount = this.toConvert / this.exchangeRates.base;
+                return this.convertedCurrency = amount * this.selectedCurrency;
             }
         },
 
