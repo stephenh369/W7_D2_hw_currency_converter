@@ -8,8 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
         data: {
             exchangeRates: '',
             eurosToConvert: 0,
+            currencyToConvert: 0,
             selectedCurrencyFromEuros: null,
+            selectedCurrencyToEuros: null,
             convertedEuros: 0,
+            convertedToEuros: 0,
             
             toConvert: 0,
             selectedBaseCurrency: null,
@@ -25,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
             
             convertFromEuros: function() {
                 return this.convertedEuros = this.eurosToConvert * this.selectedCurrencyFromEuros;
+            },
+
+            convertToEuros: function() {
+                return this.convertedToEuros = this.currencyToConvert / this.selectedCurrencyToEuros;
             },
             
             convertCrossCurrency: function() {

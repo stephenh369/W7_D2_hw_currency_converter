@@ -13,14 +13,26 @@
         
         <div id="converter">
             
-            <select class="currency-select" v-model="selectedCurrencyFromEuros">
-                <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
-            </select>
-            <input type="number" v-model.number="eurosToConvert">
-            <h3 v-if="convertedEuros">= {{ convertedEuros }}</h3>
+            <div id="from-euro-converter">
+                <h3>From Euros(choose a currency and enter value in euros)</h3>
+                <select class="currency-select" v-model="selectedCurrencyFromEuros">
+                    <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
+                </select>
+                <input type="number" v-model.number="eurosToConvert">
+                <h3 v-if="convertedEuros">= {{ convertedEuros }}</h3>
+            </div>
+
+            <div id="to-euro-converter">
+                <h3>To Euros(choose a currency and enter value in that currency)</h3>
+                <select class="currency-select" v-model="selectedCurrencyToEuros">
+                    <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
+                </select>
+                <input type="number" v-model.number="currencyToConvert">
+                <h3 v-if="convertedToEuros">= {{ convertedToEuros }}</h3>
+            </div>
             
             <div id="cross-converter">
-                <h3>Enter an amount:</h3>
+                <h3>Any To Any Currency:</h3>
                 <select class="base-select" v-model="selectedBaseCurrency">
                     <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
                 </select>
@@ -34,7 +46,7 @@
         </div>
 
         <div id="exchange-rate-list">
-            <h3>Exchange Rates</h3>
+            <h3>Exchange Rates (From Euro)</h3>
             <p v-for="(rate, name) in exchangeRates.rates">{{name}}:{{ rate }}</p>
         </div>
     </div>
