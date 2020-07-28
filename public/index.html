@@ -8,6 +8,12 @@
     <title>Currency Converter</title>
 </head>
 <body>
-    
+    <div id="app">
+        <h1>Currency Converter</h1>
+        <div>
+            <h3>Exchange Rates</h3>
+            <p v-for="(i, name) in exchangeRates.rates">{{name}}:{{ i }}</p>
+        </div>
+    </div>
 </body>
 </html>
