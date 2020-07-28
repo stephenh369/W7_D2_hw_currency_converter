@@ -27,17 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
         computed: {
             
             convertFromEuros: function() {
-                return this.convertedEuros = this.eurosToConvert * this.selectedCurrencyFromEuros;
+                this.convertedEuros = this.eurosToConvert * this.selectedCurrencyFromEuros;
+                return this.convertedEuros = this.convertedEuros.toFixed(2);
             },
 
             convertToEuros: function() {
-                return this.convertedToEuros = this.currencyToConvert / this.selectedCurrencyToEuros;
+                this.convertedToEuros = this.currencyToConvert / this.selectedCurrencyToEuros;
+                return this.convertedToEuros = this.convertedToEuros.toFixed(2);
             },
             
             convertCrossCurrency: function() {
                 this.exchangeRates.base = this.selectedBaseCurrency
                 const amount = this.toConvert / this.exchangeRates.base;
-                return this.convertedCurrency = amount * this.selectedCurrency;
+                this.convertedCurrency = amount * this.selectedCurrency;
+                return this.convertedCurrency = this.convertedCurrency.toFixed(2);
             }
         },
 
@@ -46,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('https://api.exchangeratesapi.io/latest')
             .then(response => response.json())
             .then(data => this.exchangeRates = data);
-           },
+           }
            
         }
 
