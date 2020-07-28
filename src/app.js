@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         data: {
             exchangeRates: '',
+            eurosToConvert: 0,
+            selectedCurrencyFromEuros: null,
+            convertedEuros: 0,
+            
             toConvert: 0,
             selectedBaseCurrency: null,
             selectedCurrency: null,
@@ -18,7 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         computed: {
-            convertCurrency: function() {
+            
+            convertFromEuros: function() {
+                return this.convertedEuros = this.eurosToConvert * this.selectedCurrencyFromEuros;
+            },
+            
+            convertCrossCurrency: function() {
                 this.exchangeRates.base = this.selectedBaseCurrency
                 const amount = this.toConvert / this.exchangeRates.base;
                 return this.convertedCurrency = amount * this.selectedCurrency;
@@ -30,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch('https://api.exchangeratesapi.io/latest')
             .then(response => response.json())
             .then(data => this.exchangeRates = data);
-           } 
+           },
+           
         }
 
     });

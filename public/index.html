@@ -12,15 +12,25 @@
         <h1>Currency Converter</h1>
         
         <div id="converter">
-            <h3>Enter an amount:</h3>
-            <select id="base-select" v-model="selectedBaseCurrency">
-                <option v-for="(rate, name) in exchangeRates.rates" :value="rate">{{name}}</option>
+            
+            <select class="currency-select" v-model="selectedCurrencyFromEuros">
+                <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
             </select>
-            <select id="currency-select" v-model="selectedCurrency">
-                <option v-for="(rate, name) in exchangeRates.rates" :value="rate">{{name}}</option>
-            </select>
-            <input type="number" v-model.number="toConvert">
-            <h3>= {{ convertedCurrency }}</h3>
+            <input type="number" v-model.number="eurosToConvert">
+            <h3 v-if="convertedEuros">= {{ convertedEuros }}</h3>
+            
+            <div id="cross-converter">
+                <h3>Enter an amount:</h3>
+                <select class="base-select" v-model="selectedBaseCurrency">
+                    <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
+                </select>
+                <select class="currency-select" v-model="selectedCurrency">
+                    <option v-for="(rate, name) in exchangeRates.rates" :value="rate" required>{{name}}</option>
+                </select>
+                <input type="number" v-model.number="toConvert">
+                <h3 v-if="convertedCurrency">= {{ convertedCurrency }}</h3>
+            </div>
+
         </div>
 
         <div id="exchange-rate-list">
